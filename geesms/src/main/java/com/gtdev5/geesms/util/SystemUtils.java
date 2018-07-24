@@ -11,13 +11,10 @@ import com.gtdev5.geesms.contants.Contants;
 
 import java.util.Locale;
 
-/**
- * Created by cheng
- * PackageName APP_Lock
- * 2018/1/22 10:06
- *      系统工具类
- */
 
+/**
+ * zeoy
+ */
 public class SystemUtils {
 
 
@@ -138,12 +135,19 @@ public class SystemUtils {
                     context.getPackageName(), PackageManager.GET_META_DATA);
             if (null != ai) {
                 metaData = ai.metaData;
+            }else {
+                Log.e("SMS","唯美短信SDK获取ApplicationInfo失败");
             }
             if (null != metaData) {
                 metaValue = metaData.getString(channel);
+            }else {
+                Log.e("SMS","唯美短信SDK获取metadata失败");
+            }
+            if (Utils.isEmpty(metaValue)){
+                Log.e("SMS","请先在注册文件中添加metadata："+Contants.APPID_CHANNEL+"和"+Contants.APPKEY_CHANNEL);
             }
         } catch (PackageManager.NameNotFoundException e) {
-            Log.e("SMS","请先在注册文件中添加metadata："+Contants.APPID_CHANNEL+"和"+Contants.APPKEY_CHANNEL);
+            Log.e("SMS","获取metadata过程中出现错误"+e.toString());
         }
         return metaValue;// xxx
     }

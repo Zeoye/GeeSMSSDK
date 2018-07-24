@@ -18,6 +18,7 @@ import com.gtdev5.geesms.util.Utils;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.util.Map;
+import java.util.Random;
 import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
 
@@ -32,18 +33,18 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
- * Created by cheng
+ * Created by zeoy
  * PackageName ModelTest
- * 2018/1/4 9:28
- *          Http请求类
+ * 2018年7月24日15:17:50
+ *          短信发送主类
  */
 
-public class HttpUtils {
+public class WMSMS {
     public static final MediaType FORM_CONTENT_TYPE
             = MediaType.parse("application/x-www-form-urlencoded; charset=utf-8");
 
 
-    private static HttpUtils mHttpUtils;
+    private static WMSMS mWMSMS;
     private OkHttpClient mOkHttpClient;
     private Handler mHandler;
     private Context context;
@@ -60,7 +61,7 @@ public class HttpUtils {
     private Map<String,String> resultMap;
     private Gson gson;
 
-    private HttpUtils(Context context){
+    private WMSMS(Context context){
         try {
             mOkHttpClient = new OkHttpClient();
             mOkHttpClient.newBuilder().connectTimeout(10, TimeUnit.SECONDS).readTimeout(10,TimeUnit.SECONDS)
@@ -74,15 +75,15 @@ public class HttpUtils {
         }
     }
 
-    public static HttpUtils getInstance(Context context){
-        if (mHttpUtils == null){
-            synchronized (HttpUtils.class){
-                if (mHttpUtils == null){
-                    mHttpUtils = new HttpUtils(context);
+    public static WMSMS getInstance(Context context){
+        if (mWMSMS == null){
+            synchronized (WMSMS.class){
+                if (mWMSMS == null){
+                    mWMSMS = new WMSMS(context);
                 }
             }
         }
-        return mHttpUtils;
+        return mWMSMS;
     }
 
     /**
@@ -380,7 +381,7 @@ public class HttpUtils {
             String key = entry.getKey();
             String value = entry.getValue();
             if (value == null) {
-                value = null;
+                value = "";
             }
             if (key.equals("sign")) {
                 value = Utils.byte2hex(alga.digest());
@@ -486,7 +487,14 @@ public class HttpUtils {
 
 
 
-
+    public static String getRandom(int n){
+        StringBuilder stringBuilder = new StringBuilder();
+        Random random = new Random();
+        for (int i = 0;i<n;i++){
+            stringBuilder.append(random.nextInt(9));
+        }
+        return stringBuilder.toString();
+    }
 
 
 

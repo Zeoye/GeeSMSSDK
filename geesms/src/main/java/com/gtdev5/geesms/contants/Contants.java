@@ -1,9 +1,9 @@
 package com.gtdev5.geesms.contants;
 
 /**
- * Created by cheng
+ * Created by zeoy
  * PackageName ModelTest
- * 2018/1/6 14:04
+ * 2018年7月24日15:18:12
  *      常量类
  */
 

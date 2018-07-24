@@ -1,5 +1,8 @@
 package com.gtdev5.geesms.bean;
 
+/**
+ * 发送短信请求结果bean
+ */
 public class SendResultBean {
     String errcode;
     String errmsg;
