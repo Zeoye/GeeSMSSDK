@@ -88,9 +88,9 @@ public class WMSMS {
 
     /**
      * @param tel                    发送的电话
-     * @param tplcode                短信模板码
-     * @param tplparms               模板参数
-     * @param signstr                签名字符串
+     * @param tplcode                短信模板码 （登录后台获取）
+     * @param tplparms               模板参数  （例：{\"var\":\"测试内容\"}）\转义
+     * @param signstr                签名字符串 （需要与后台注册的签名字符一致）
      * @param callback
      */
     public void postSendSMS(String tel,String tplcode,String tplparms,String signstr,BaseCallback callback){
