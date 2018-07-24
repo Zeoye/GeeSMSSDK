@@ -491,7 +491,7 @@ public class WMSMS {
         StringBuilder stringBuilder = new StringBuilder();
         Random random = new Random();
         for (int i = 0;i<n;i++){
-            stringBuilder.append(random.nextInt(9));
+            stringBuilder.append(random.nextInt(10));
         }
         return stringBuilder.toString();
     }
